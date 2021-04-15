@@ -7,13 +7,21 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] GameObject mainPokemon;
     [SerializeField] GameObject enemyPokemon;
     [SerializeField] ParticleSystem TackleHitVFX;
+    [SerializeField] ParticleSystem AirSlash;
+    [SerializeField] ParticleSystem AirSlashBurst;
+    [SerializeField] ParticleSystem PoisonPowderPS;
+    [SerializeField] ParticleSystem PoisonBubblesPS;
     [SerializeField] float tackleDistance = 1;
     [SerializeField] float tackleSpeed = 1;
+    [SerializeField] float AirSlashDistance = 1;
+    [SerializeField] float AirSlashSpeed = 1;
+    [SerializeField] Material enemyPoisonMaterial;
 
     // Start is called before the first frame update
     void Start()
     {
         tackleDistance += mainPokemon.transform.localPosition.z;
+        AirSlashDistance += enemyPokemon.transform.localPosition.x;
     }
 
     // Update is called once per frame
@@ -23,11 +31,58 @@ public class PlayAttackEffects : MonoBehaviour
         {
             TackleVFX();
         }
+        else if(Input.GetKeyDown(KeyCode.S))
+        {
+            AirSlashVFX();
+        }
+        else if(Input.GetKeyDown(KeyCode.P))
+        {
+            PoisonPowderVFX();
+        }
+    }
+
+    public void PoisonPowderVFX()
+    {
+        PoisonPowderPS.Play();
+        Renderer[] rends = enemyPokemon.GetComponentsInChildren<Renderer>();
+        foreach( Renderer rend in rends)
+        {
+            rend.material = enemyPoisonMaterial;
+        }
+        PoisonBubblesPS.Play();
     }
 
     public void TackleVFX()
     {
         StartCoroutine(TackleCourtine());
+    }
+
+    public void AirSlashVFX()
+    {
+        StartCoroutine(AirSlashCourtine());
+    }
+
+    IEnumerator AirSlashCourtine()
+    {
+        float startPosition = enemyPokemon.transform.localPosition.x;
+        float scaledSpeed = 0;
+
+        while (AirSlashDistance != enemyPokemon.transform.localPosition.x)
+        {
+            enemyPokemon.transform.localPosition = new Vector3(Mathf.LerpAngle(startPosition, AirSlashDistance, scaledSpeed), enemyPokemon.transform.localPosition.y, enemyPokemon.transform.localPosition.z);
+            scaledSpeed += AirSlashSpeed * Time.deltaTime;
+            //print(scaledSpeed);
+            yield return new WaitForEndOfFrame();
+        }
+        AirSlash.Play();
+        AirSlashBurst.Play();
+        while (startPosition != enemyPokemon.transform.localPosition.x)
+        {
+            enemyPokemon.transform.localPosition = new Vector3(Mathf.LerpAngle(startPosition, AirSlashDistance, scaledSpeed), enemyPokemon.transform.localPosition.y, enemyPokemon.transform.localPosition.z);
+            scaledSpeed -= AirSlashSpeed * Time.deltaTime;
+            //print(scaledSpeed);
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     IEnumerator TackleCourtine()
