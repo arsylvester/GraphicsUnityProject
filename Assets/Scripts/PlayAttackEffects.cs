@@ -9,10 +9,13 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] ParticleSystem TackleHitVFX;
     [SerializeField] ParticleSystem AirSlash;
     [SerializeField] ParticleSystem AirSlashBurst;
+    [SerializeField] ParticleSystem PoisonPowderPS;
+    [SerializeField] ParticleSystem PoisonBubblesPS;
     [SerializeField] float tackleDistance = 1;
     [SerializeField] float tackleSpeed = 1;
     [SerializeField] float AirSlashDistance = 1;
     [SerializeField] float AirSlashSpeed = 1;
+    [SerializeField] Material enemyPoisonMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,21 @@ public class PlayAttackEffects : MonoBehaviour
         {
             AirSlashVFX();
         }
+        else if(Input.GetKeyDown(KeyCode.P))
+        {
+            PoisonPowderVFX();
+        }
+    }
+
+    public void PoisonPowderVFX()
+    {
+        PoisonPowderPS.Play();
+        Renderer[] rends = enemyPokemon.GetComponentsInChildren<Renderer>();
+        foreach( Renderer rend in rends)
+        {
+            rend.material = enemyPoisonMaterial;
+        }
+        PoisonBubblesPS.Play();
     }
 
     public void TackleVFX()
