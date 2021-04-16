@@ -5864,6 +5864,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vine Whip
       objectReference: {fileID: 0}
+    - target: {fileID: 2377224981256734041, guid: 021cdae59b1d3a749adbb5fc01556542, type: 3}
+      propertyPath: m_Name
+      value: Vine Whip Burst
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 021cdae59b1d3a749adbb5fc01556542, type: 3}
 --- !u!1001 &2021117792183808408
@@ -5923,6 +5927,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64dac267e458e3146b15d2b8e809ea7b, type: 3}
+--- !u!1001 &2068037588528451417
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584588, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_Name
+      value: Air Cutter
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
 --- !u!1001 &2377224980691297993
 PrefabInstance:
   m_ObjectHideFlags: 0
