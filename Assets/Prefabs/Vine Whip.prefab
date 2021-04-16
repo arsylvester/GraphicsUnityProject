@@ -4875,7 +4875,7 @@ GameObject:
   - component: {fileID: 2377224981256734042}
   - component: {fileID: 2377224981256734043}
   m_Layer: 0
-  m_Name: Air Slash burst
+  m_Name: Vine Whip Burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

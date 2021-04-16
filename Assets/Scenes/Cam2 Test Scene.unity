@@ -5864,10 +5864,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vine Whip
       objectReference: {fileID: 0}
-    - target: {fileID: 2377224981256734041, guid: 021cdae59b1d3a749adbb5fc01556542, type: 3}
-      propertyPath: m_Name
-      value: Vine Whip Burst
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 021cdae59b1d3a749adbb5fc01556542, type: 3}
 --- !u!1001 &2021117792183808408
