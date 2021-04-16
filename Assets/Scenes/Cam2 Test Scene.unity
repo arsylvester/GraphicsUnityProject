@@ -5555,13 +5555,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5752555154889957021, guid: 3518c3e062823d24086e3dfd8094bc73, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 5752555154889957021, guid: 3518c3e062823d24086e3dfd8094bc73, type: 3}
       propertyPath: m_Flip.x
-      value: 0.69
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5752555154889957021, guid: 3518c3e062823d24086e3dfd8094bc73, type: 3}
       propertyPath: m_Flip.y
-      value: 0.31
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5752555154889957021, guid: 3518c3e062823d24086e3dfd8094bc73, type: 3}
+      propertyPath: m_SortMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752555154889957021, guid: 3518c3e062823d24086e3dfd8094bc73, type: 3}
+      propertyPath: m_RenderMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752555154889957021, guid: 3518c3e062823d24086e3dfd8094bc73, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b566d71a5b44bbd4fb643137cf2ecbae, type: 2}
     - target: {fileID: 5752555154889957022, guid: 3518c3e062823d24086e3dfd8094bc73, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -6063,10 +6079,6 @@ PrefabInstance:
     - target: {fileID: 5752555154889957020, guid: 3518c3e062823d24086e3dfd8094bc73, type: 3}
       propertyPath: m_Name
       value: Poison Bubbles
-      objectReference: {fileID: 0}
-    - target: {fileID: 5752555154889957020, guid: 3518c3e062823d24086e3dfd8094bc73, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5752555154889957023, guid: 3518c3e062823d24086e3dfd8094bc73, type: 3}
       propertyPath: m_RootOrder
