@@ -11,11 +11,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject optionsTextPanel;
     [SerializeField] Text ppText;
     [SerializeField] Text typeText;
+    [SerializeField] Slider IvyHPBar;
+    [SerializeField] Image IvyHPFill;
+    [SerializeField] Slider ZubatHPBar;
+    [SerializeField] Image ZubatHPFill;
+    Color HighHPColor;
+    [SerializeField] Color MediumHPColor;
+    [SerializeField] Color LowHPColor;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        HighHPColor = IvyHPFill.color;
     }
 
     // Update is called once per frame
@@ -68,6 +75,40 @@ public class UIManager : MonoBehaviour
             default:
                 print("No attack");
                 break;
+        }
+    }
+
+    public void SetHPBarIvy(float value)
+    {
+        IvyHPBar.value = value;
+        if (value < 20)
+        {
+            IvyHPFill.color = LowHPColor;
+        }
+        else if(value < 40)
+        {
+            IvyHPFill.color = MediumHPColor;
+        }
+        else
+        {
+            IvyHPFill.color = HighHPColor;
+        }
+    }
+
+    public void SetHPBarZubat(float value)
+    {
+        ZubatHPBar.value = value;
+        if (value < 20)
+        {
+            ZubatHPFill.color = LowHPColor;
+        }
+        else if (value < 40)
+        {
+            ZubatHPFill.color = MediumHPColor;
+        }
+        else
+        {
+            ZubatHPFill.color = HighHPColor;
         }
     }
 }
