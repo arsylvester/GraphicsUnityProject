@@ -20,7 +20,7 @@ public class AudioPlayer : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        audio.clip = clip;
-        audio.Play();
+        //audio.clip = clip;
+        audio.PlayOneShot(clip);
     }
 }

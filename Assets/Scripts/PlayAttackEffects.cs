@@ -16,12 +16,15 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] float AirSlashDistance = 1;
     [SerializeField] float AirSlashSpeed = 1;
     [SerializeField] Material enemyPoisonMaterial;
+    [SerializeField] AudioClip PoisonPowderClip;
+    AudioPlayer audio;
 
     // Start is called before the first frame update
     void Start()
     {
         tackleDistance += mainPokemon.transform.localPosition.z;
         AirSlashDistance += enemyPokemon.transform.localPosition.x;
+        audio = FindObjectOfType<AudioPlayer>();
     }
 
     // Update is called once per frame
@@ -50,6 +53,7 @@ public class PlayAttackEffects : MonoBehaviour
             rend.material = enemyPoisonMaterial;
         }
         PoisonBubblesPS.Play();
+        audio.PlaySound(PoisonPowderClip);
     }
 
     public void TackleVFX()
