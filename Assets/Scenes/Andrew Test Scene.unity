@@ -170,6 +170,7 @@ MonoBehaviour:
   AirSlashSpeed: 9
   enemyPoisonMaterial: {fileID: 2100000, guid: 45e98a31747f43048aca5209a4587625, type: 2}
   PoisonPowderClip: {fileID: 8300000, guid: 3cc2a6234be41014a952be399b7811ba, type: 3}
+  TackleClip: {fileID: 8300000, guid: 2f5d8712d683e2a489a10cb796a2b059, type: 3}
 --- !u!4 &204961240
 Transform:
   m_ObjectHideFlags: 0

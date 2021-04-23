@@ -17,6 +17,7 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] float AirSlashSpeed = 1;
     [SerializeField] Material enemyPoisonMaterial;
     [SerializeField] AudioClip PoisonPowderClip;
+    [SerializeField] AudioClip TackleClip;
     AudioPlayer audio;
 
     // Start is called before the first frame update
@@ -102,6 +103,7 @@ public class PlayAttackEffects : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         TackleHitVFX.Play();
+        audio.PlaySound(TackleClip);
         while (startPosition != mainPokemon.transform.localPosition.z)
         {
             mainPokemon.transform.localPosition = new Vector3(mainPokemon.transform.localPosition.x, mainPokemon.transform.localPosition.y, Mathf.LerpAngle(startPosition, tackleDistance, scaledSpeed));
