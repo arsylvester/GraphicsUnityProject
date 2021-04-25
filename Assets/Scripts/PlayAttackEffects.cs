@@ -16,12 +16,17 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] float AirSlashDistance = 1;
     [SerializeField] float AirSlashSpeed = 1;
     [SerializeField] Material enemyPoisonMaterial;
+    [SerializeField] AudioClip PoisonPowderClip;
+    [SerializeField] AudioClip TackleClip;
+    [SerializeField] AudioClip AirSlashClip;
+    AudioPlayer audio;
 
     // Start is called before the first frame update
     void Start()
     {
         tackleDistance += mainPokemon.transform.localPosition.z;
         AirSlashDistance += enemyPokemon.transform.localPosition.x;
+        audio = FindObjectOfType<AudioPlayer>();
     }
 
     // Update is called once per frame
@@ -50,6 +55,7 @@ public class PlayAttackEffects : MonoBehaviour
             rend.material = enemyPoisonMaterial;
         }
         PoisonBubblesPS.Play();
+        audio.PlaySound(PoisonPowderClip);
     }
 
     public void TackleVFX()
@@ -76,6 +82,7 @@ public class PlayAttackEffects : MonoBehaviour
         }
         AirSlash.Play();
         AirSlashBurst.Play();
+        audio.PlaySound(AirSlashClip);
         while (startPosition != enemyPokemon.transform.localPosition.x)
         {
             enemyPokemon.transform.localPosition = new Vector3(Mathf.LerpAngle(startPosition, AirSlashDistance, scaledSpeed), enemyPokemon.transform.localPosition.y, enemyPokemon.transform.localPosition.z);
@@ -98,6 +105,7 @@ public class PlayAttackEffects : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         TackleHitVFX.Play();
+        audio.PlaySound(TackleClip);
         while (startPosition != mainPokemon.transform.localPosition.z)
         {
             mainPokemon.transform.localPosition = new Vector3(mainPokemon.transform.localPosition.x, mainPokemon.transform.localPosition.y, Mathf.LerpAngle(startPosition, tackleDistance, scaledSpeed));
