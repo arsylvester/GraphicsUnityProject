@@ -6220,6 +6220,6 @@ PrefabInstance:
     - target: {fileID: 6456167514140605005, guid: 07d0e726b73bc69499c41c92f20ffb96, type: 3}
       propertyPath: RazerLeafClip
       value: 
-      objectReference: {fileID: 8300000, guid: 583bd3e5c915a3b4bb0122b6f9792d9d, type: 3}
+      objectReference: {fileID: 8300000, guid: 020ec56cbe66a7b45b94d50fef6b0e2c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07d0e726b73bc69499c41c92f20ffb96, type: 3}
