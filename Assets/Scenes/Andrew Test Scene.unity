@@ -5947,6 +5947,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 2072460736849761398, guid: 03578e704f2f538499005019a08f30c9, type: 3}
+      propertyPath: loseHPSpeed
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2072460736849761399, guid: 03578e704f2f538499005019a08f30c9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
