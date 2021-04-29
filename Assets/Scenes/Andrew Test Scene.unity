@@ -5900,14 +5900,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1375854128}
     - target: {fileID: 2072460736326043238, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460736326043238, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460736326043238, guid: 03578e704f2f538499005019a08f30c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1375854128}
@@ -5915,26 +5907,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 204961239}
-    - target: {fileID: 2072460736326043238, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460736326043238, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: RazerLeafVFX
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460736326043238, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: PlayAttackEffects, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460736326043238, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460736326043238, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 2072460736828015399, guid: 03578e704f2f538499005019a08f30c9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5946,10 +5918,6 @@ PrefabInstance:
     - target: {fileID: 2072460736849761355, guid: 03578e704f2f538499005019a08f30c9, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460736849761398, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: loseHPSpeed
-      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2072460736849761399, guid: 03578e704f2f538499005019a08f30c9, type: 3}
       propertyPath: m_Pivot.x
@@ -6056,14 +6024,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1375854128}
     - target: {fileID: 2072460737104638302, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460737104638302, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460737104638302, guid: 03578e704f2f538499005019a08f30c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 204961239}
@@ -6071,30 +6031,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1375854128}
-    - target: {fileID: 2072460737104638302, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 1687894049}
-    - target: {fileID: 2072460737104638302, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460737104638302, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460737104638302, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: PlayAttackEffects, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460737104638302, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072460737104638302, guid: 03578e704f2f538499005019a08f30c9, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03578e704f2f538499005019a08f30c9, type: 3}
 --- !u!1001 &4633095599129616310
@@ -6221,9 +6157,5 @@ PrefabInstance:
       propertyPath: enemyPokemon
       value: 
       objectReference: {fileID: 255703185}
-    - target: {fileID: 6456167514140605005, guid: 07d0e726b73bc69499c41c92f20ffb96, type: 3}
-      propertyPath: RazerLeafClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 020ec56cbe66a7b45b94d50fef6b0e2c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07d0e726b73bc69499c41c92f20ffb96, type: 3}
