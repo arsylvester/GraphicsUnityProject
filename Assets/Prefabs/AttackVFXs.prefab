@@ -55,6 +55,8 @@ MonoBehaviour:
   AirSlashBurst: {fileID: 6456167514585377801}
   PoisonPowderPS: {fileID: 6456167513759269374}
   PoisonBubblesPS: {fileID: 1607156467444377962}
+  RazerLeafPS: {fileID: 0}
+  VineWhipPS: {fileID: 0}
   tackleDistance: -1
   tackleSpeed: 9
   AirSlashDistance: 1
@@ -63,6 +65,8 @@ MonoBehaviour:
   PoisonPowderClip: {fileID: 8300000, guid: 3cc2a6234be41014a952be399b7811ba, type: 3}
   TackleClip: {fileID: 8300000, guid: 2f5d8712d683e2a489a10cb796a2b059, type: 3}
   AirSlashClip: {fileID: 8300000, guid: 74b685a1872f07247beac7d849309f35, type: 3}
+  RazerLeafClip: {fileID: 8300000, guid: 020ec56cbe66a7b45b94d50fef6b0e2c, type: 3}
+  VineWhipClip: {fileID: 8300000, guid: ce832df0df4f8224489f21969242391e, type: 3}
 --- !u!1001 &549359651004046843
 PrefabInstance:
   m_ObjectHideFlags: 0

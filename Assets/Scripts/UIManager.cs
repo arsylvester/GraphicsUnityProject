@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     Color HighHPColor;
     [SerializeField] Color MediumHPColor;
     [SerializeField] Color LowHPColor;
+    [SerializeField] float loseHPSpeed = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,15 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //TESTING, REMOVE
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            SetHPBarIvy(20);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SetHPBarZubat(20);
+        }
     }
 
     public void MoveToAttack()
@@ -80,7 +89,7 @@ public class UIManager : MonoBehaviour
 
     public void SetHPBarIvy(float value)
     {
-        IvyHPBar.value = value;
+        StartCoroutine(ReduceHPBar(IvyHPBar, value));
         if (value < 20)
         {
             IvyHPFill.color = LowHPColor;
@@ -97,7 +106,7 @@ public class UIManager : MonoBehaviour
 
     public void SetHPBarZubat(float value)
     {
-        ZubatHPBar.value = value;
+        StartCoroutine(ReduceHPBar(ZubatHPBar, value));
         if (value < 20)
         {
             ZubatHPFill.color = LowHPColor;
@@ -109,6 +118,18 @@ public class UIManager : MonoBehaviour
         else
         {
             ZubatHPFill.color = HighHPColor;
+        }
+    }
+
+    IEnumerator ReduceHPBar(Slider bar, float newValue)
+    {
+        float currentValue = bar.value;
+        float scaledSpeed = 0;
+        while (bar.value != newValue)
+        {
+            bar.value = Mathf.Lerp(currentValue, newValue, scaledSpeed);
+            scaledSpeed += loseHPSpeed * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
     }
 }
