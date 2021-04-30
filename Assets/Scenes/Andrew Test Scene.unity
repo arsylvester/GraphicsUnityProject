@@ -133,17 +133,12 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 9004478710806189350, guid: a667478e1e8cb584ab8c9189406d6fee, type: 3}
   m_PrefabInstance: {fileID: 271599484}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &204961238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6456167514140605004, guid: 07d0e726b73bc69499c41c92f20ffb96, type: 3}
-  m_PrefabInstance: {fileID: 6456167514076549018}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &204961239 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6456167514140605005, guid: 07d0e726b73bc69499c41c92f20ffb96, type: 3}
   m_PrefabInstance: {fileID: 6456167514076549018}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 204961238}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7b742ff622f68e4a806ff5e9a96a17c, type: 3}
@@ -5799,6 +5794,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 29.555, y: -171.868, z: -143.614}
+--- !u!1001 &1880285127
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584577, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377224979735584588, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
+      propertyPath: m_Name
+      value: Air Cutter
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d129a145f490f14da83779bc76adf18, type: 3}
 --- !u!1 &1925306754
 GameObject:
   m_ObjectHideFlags: 0
@@ -6014,7 +6066,7 @@ PrefabInstance:
     - target: {fileID: 2072460737035478324, guid: 03578e704f2f538499005019a08f30c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 204961238}
+      objectReference: {fileID: 204961239}
     - target: {fileID: 2072460737035478324, guid: 03578e704f2f538499005019a08f30c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
