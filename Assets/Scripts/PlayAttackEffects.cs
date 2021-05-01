@@ -13,6 +13,7 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] ParticleSystem PoisonBubblesPS;
     [SerializeField] ParticleSystem RazerLeafPS;
     [SerializeField] ParticleSystem VineWhipPS;
+    [SerializeField] ParticleSystem AirCutterPS;
     [SerializeField] float tackleDistance = 1;
     [SerializeField] float tackleSpeed = 1;
     [SerializeField] float AirSlashDistance = 1;
@@ -23,6 +24,7 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] AudioClip AirSlashClip;
     [SerializeField] AudioClip RazerLeafClip;
     [SerializeField] AudioClip VineWhipClip;
+    [SerializeField] AudioClip AirCutterClip;
     AudioPlayer audio;
 
     // Start is called before the first frame update
@@ -48,6 +50,10 @@ public class PlayAttackEffects : MonoBehaviour
         {
             PoisonPowderVFX();
         }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            AirCutterVFX();
+        }
     }
 
     public void PoisonPowderVFX()
@@ -66,6 +72,11 @@ public class PlayAttackEffects : MonoBehaviour
     {
         RazerLeafPS.Play();
         audio.PlaySound(RazerLeafClip);
+    }
+    public void AirCutterVFX()
+    {
+        AirCutterPS.Play();
+        audio.PlaySound(AirCutterClip);
     }
 
     public void VineWhipVFX()
