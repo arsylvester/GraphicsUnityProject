@@ -13,6 +13,8 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] ParticleSystem PoisonBubblesPS;
     [SerializeField] ParticleSystem RazerLeafPS;
     [SerializeField] ParticleSystem VineWhipPS;
+    [SerializeField] ParticleSystem AirCutterPS;
+    [SerializeField] ParticleSystem VenoshockPS;
     [SerializeField] float tackleDistance = 1;
     [SerializeField] float tackleSpeed = 1;
     [SerializeField] float AirSlashDistance = 1;
@@ -23,6 +25,8 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] AudioClip AirSlashClip;
     [SerializeField] AudioClip RazerLeafClip;
     [SerializeField] AudioClip VineWhipClip;
+    [SerializeField] AudioClip AirCutterClip;
+    [SerializeField] AudioClip VenoshockClip;
     AudioPlayer audio;
 
     // Start is called before the first frame update
@@ -48,6 +52,14 @@ public class PlayAttackEffects : MonoBehaviour
         {
             PoisonPowderVFX();
         }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            AirCutterVFX();
+        }
+        else if (Input.GetKeyDown(KeyCode.V))
+        {
+            VenoshockVFX();
+        }
     }
 
     public void PoisonPowderVFX()
@@ -67,11 +79,22 @@ public class PlayAttackEffects : MonoBehaviour
         RazerLeafPS.Play();
         audio.PlaySound(RazerLeafClip);
     }
+    public void AirCutterVFX()
+    {
+        AirCutterPS.Play();
+        audio.PlaySound(AirCutterClip);
+    }
 
     public void VineWhipVFX()
     {
         VineWhipPS.Play();
         audio.PlaySound(VineWhipClip);
+    }
+
+    public void VenoshockVFX()
+    {
+        VenoshockPS.Play();
+        audio.PlaySound(VenoshockClip);
     }
 
     public void TackleVFX()

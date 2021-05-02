@@ -9,8 +9,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject attackTextPanel;
     [SerializeField] GameObject optionsButtonsPanel;
     [SerializeField] GameObject optionsTextPanel;
+    [SerializeField] GameObject descriptionTextPanel;
     [SerializeField] Text ppText;
     [SerializeField] Text typeText;
+    [SerializeField] Text descriptionText;
     [SerializeField] Slider IvyHPBar;
     [SerializeField] Image IvyHPFill;
     [SerializeField] Slider ZubatHPBar;
@@ -19,6 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Color MediumHPColor;
     [SerializeField] Color LowHPColor;
     [SerializeField] float loseHPSpeed = 1;
+    [SerializeField] PlayAttackEffects vfxs;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,7 @@ public class UIManager : MonoBehaviour
         attackTextPanel.SetActive(true);
         optionsButtonsPanel.SetActive(false);
         optionsTextPanel.SetActive(false);
+        descriptionTextPanel.SetActive(false);
     }
 
     public void MoveToOptions()
@@ -54,6 +58,16 @@ public class UIManager : MonoBehaviour
         attackTextPanel.SetActive(false);
         optionsButtonsPanel.SetActive(true);
         optionsTextPanel.SetActive(true);
+        descriptionTextPanel.SetActive(false);
+    }
+
+    public void MoveToText()
+    {
+        attackButtonsPanel.SetActive(false);
+        attackTextPanel.SetActive(false);
+        optionsButtonsPanel.SetActive(false);
+        optionsTextPanel.SetActive(false);
+        descriptionTextPanel.SetActive(true);
     }
 
     public void QuitGame()
@@ -85,6 +99,33 @@ public class UIManager : MonoBehaviour
                 print("No attack");
                 break;
         }
+    }
+
+    public void ButtonPress(string move)
+    {
+        switch (move)
+        {
+            case "tackle":
+                descriptionText.text = "Ivysaur used Tackle!";
+                vfxs.TackleVFX();
+                break;
+            case "vine whip":
+                descriptionText.text = "Ivysaur used Vine Whip!";
+                vfxs.VineWhipVFX();
+                break;
+            case "poison powder":
+                descriptionText.text = "Ivysaur used Poison Powder!";
+                vfxs.PoisonPowderVFX();
+                break;
+            case "razer leaf":
+                descriptionText.text = "Ivysaur used Razer Leaf!";
+                vfxs.RazerLeafVFX();
+                break;
+            default:
+                print("No attack");
+                break;
+        }
+        MoveToText();
     }
 
     public void SetHPBarIvy(float value)
