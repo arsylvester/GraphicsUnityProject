@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Color LowHPColor;
     [SerializeField] float loseHPSpeed = 1;
     [SerializeField] PlayAttackEffects vfxs;
+    [SerializeField] GameObject ContinueImage;
+    float vfxDuration;
+    bool canContinue;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +43,11 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             SetHPBarZubat(20);
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canContinue)
+        {
+            MoveToOptions();
+            canContinue = false;
         }
     }
 
@@ -68,6 +76,15 @@ public class UIManager : MonoBehaviour
         optionsButtonsPanel.SetActive(false);
         optionsTextPanel.SetActive(false);
         descriptionTextPanel.SetActive(true);
+        ContinueImage.SetActive(false);
+    }
+    public void MoveToClear()
+    {
+        attackButtonsPanel.SetActive(false);
+        attackTextPanel.SetActive(false);
+        optionsButtonsPanel.SetActive(false);
+        optionsTextPanel.SetActive(false);
+        descriptionTextPanel.SetActive(false);
     }
 
     public void QuitGame()
@@ -107,25 +124,33 @@ public class UIManager : MonoBehaviour
         {
             case "tackle":
                 descriptionText.text = "Ivysaur used Tackle!";
-                vfxs.TackleVFX();
+                vfxDuration = vfxs.TackleVFX();
                 break;
             case "vine whip":
                 descriptionText.text = "Ivysaur used Vine Whip!";
-                vfxs.VineWhipVFX();
+                vfxDuration = vfxs.VineWhipVFX();
                 break;
             case "poison powder":
                 descriptionText.text = "Ivysaur used Poison Powder!";
-                vfxs.PoisonPowderVFX();
+                vfxDuration = vfxs.PoisonPowderVFX();
                 break;
             case "razer leaf":
                 descriptionText.text = "Ivysaur used Razer Leaf!";
-                vfxs.RazerLeafVFX();
+                vfxDuration = vfxs.RazerLeafVFX();
                 break;
             default:
                 print("No attack");
                 break;
         }
         MoveToText();
+        StartCoroutine(VFXWait());
+    }
+
+    IEnumerator VFXWait()
+    {
+        yield return new WaitForSeconds(vfxDuration);
+        ContinueImage.SetActive(true);
+        canContinue = true;
     }
 
     public void SetHPBarIvy(float value)
