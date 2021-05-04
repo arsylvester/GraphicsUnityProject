@@ -335,15 +335,5 @@ public class GameManager1 : MonoBehaviour
         return hp;
     }
 
-    public void WonGame()
-    {
-
-    }
-
-    public void LoseGame()
-    {
-
-    }
-
 
 }

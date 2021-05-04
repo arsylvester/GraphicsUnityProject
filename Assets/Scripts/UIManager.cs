@@ -227,6 +227,7 @@ public class UIManager : MonoBehaviour
         MoveToClear();
         endText.text = "Zubat was defeated. You win!";
         EndPanel.SetActive(true);
+        audio.ChangeToWinMusic();
     }
 
     public void DisplayLoss()
