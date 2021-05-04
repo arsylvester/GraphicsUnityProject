@@ -25,29 +25,22 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject ContinueImage;
     float vfxDuration;
     bool canContinue;
+    GameManager1 gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         HighHPColor = IvyHPFill.color;
+        gameManager = FindObjectOfType<GameManager1>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //TESTING, REMOVE
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            SetHPBarIvy(20);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SetHPBarZubat(20);
-        }
         if (Input.GetKeyDown(KeyCode.Mouse0) && canContinue)
         {
-            MoveToOptions();
             canContinue = false;
+            gameManager.NextTurn();
         }
     }
 
@@ -118,25 +111,44 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ButtonPress(string move)
+    public void UseMove(string move)
     {
         switch (move)
         {
             case "tackle":
                 descriptionText.text = "Ivysaur used Tackle!";
                 vfxDuration = vfxs.TackleVFX();
+                gameManager.tackleturn();
                 break;
             case "vine whip":
                 descriptionText.text = "Ivysaur used Vine Whip!";
                 vfxDuration = vfxs.VineWhipVFX();
+                gameManager.vinewhipturn();
                 break;
             case "poison powder":
                 descriptionText.text = "Ivysaur used Poison Powder!";
                 vfxDuration = vfxs.PoisonPowderVFX();
+                gameManager.poisonpowderturn();
                 break;
             case "razer leaf":
                 descriptionText.text = "Ivysaur used Razer Leaf!";
                 vfxDuration = vfxs.RazerLeafVFX();
+                gameManager.razerleafturn();
+                break;
+            case "air slash":
+                descriptionText.text = "Zubat used Air Slash!";
+                vfxDuration = vfxs.AirSlashVFX();
+                //gameManager.AirSlashTurn();
+                break;
+            case "air cutter":
+                descriptionText.text = "Zubat used Air Cutter!";
+                vfxDuration = vfxs.AirCutterVFX();
+                //gameManager.AirCutterTurn();
+                break;
+            case "venoshock":
+                descriptionText.text = "Zubat used Venoshock!";
+                vfxDuration = vfxs.VenoshockVFX();
+                //gameManager.VenoshockTurn();
                 break;
             default:
                 print("No attack");
