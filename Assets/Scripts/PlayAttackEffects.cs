@@ -62,7 +62,7 @@ public class PlayAttackEffects : MonoBehaviour
         }
     }
 
-    public void PoisonPowderVFX()
+    public float PoisonPowderVFX()
     {
         PoisonPowderPS.Play();
         Renderer[] rends = enemyPokemon.GetComponentsInChildren<Renderer>();
@@ -72,39 +72,46 @@ public class PlayAttackEffects : MonoBehaviour
         }
         PoisonBubblesPS.Play();
         audio.PlaySound(PoisonPowderClip);
+        return PoisonPowderPS.main.duration;
     }
 
-    public void RazerLeafVFX()
+    public float RazerLeafVFX()
     {
         RazerLeafPS.Play();
         audio.PlaySound(RazerLeafClip);
+        return RazerLeafPS.main.duration;
     }
-    public void AirCutterVFX()
+    public float AirCutterVFX()
     {
         AirCutterPS.Play();
         audio.PlaySound(AirCutterClip);
+        return AirCutterPS.main.duration;
     }
 
-    public void VineWhipVFX()
+    public float VineWhipVFX()
     {
         VineWhipPS.Play();
         audio.PlaySound(VineWhipClip);
+        return VineWhipPS.main.duration;
     }
 
-    public void VenoshockVFX()
+    public float VenoshockVFX()
     {
         VenoshockPS.Play();
         audio.PlaySound(VenoshockClip);
+        return VenoshockPS.main.duration;
     }
 
-    public void TackleVFX()
+    public float TackleVFX()
     {
         StartCoroutine(TackleCourtine());
+        return TackleHitVFX.main.duration;
     }
 
-    public void AirSlashVFX()
+    public float AirSlashVFX()
     {
         StartCoroutine(AirSlashCourtine());
+        return AirSlash.main.duration;
     }
 
     IEnumerator AirSlashCourtine()

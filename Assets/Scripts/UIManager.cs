@@ -22,24 +22,25 @@ public class UIManager : MonoBehaviour
     [SerializeField] Color LowHPColor;
     [SerializeField] float loseHPSpeed = 1;
     [SerializeField] PlayAttackEffects vfxs;
+    [SerializeField] GameObject ContinueImage;
+    float vfxDuration;
+    bool canContinue;
+    GameManager1 gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         HighHPColor = IvyHPFill.color;
+        gameManager = FindObjectOfType<GameManager1>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //TESTING, REMOVE
-        if(Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canContinue)
         {
-            SetHPBarIvy(20);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SetHPBarZubat(20);
+            canContinue = false;
+            gameManager.NextTurn();
         }
     }
 
@@ -68,6 +69,15 @@ public class UIManager : MonoBehaviour
         optionsButtonsPanel.SetActive(false);
         optionsTextPanel.SetActive(false);
         descriptionTextPanel.SetActive(true);
+        ContinueImage.SetActive(false);
+    }
+    public void MoveToClear()
+    {
+        attackButtonsPanel.SetActive(false);
+        attackTextPanel.SetActive(false);
+        optionsButtonsPanel.SetActive(false);
+        optionsTextPanel.SetActive(false);
+        descriptionTextPanel.SetActive(false);
     }
 
     public void QuitGame()
@@ -101,31 +111,58 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ButtonPress(string move)
+    public void UseMove(string move)
     {
         switch (move)
         {
             case "tackle":
                 descriptionText.text = "Ivysaur used Tackle!";
-                vfxs.TackleVFX();
+                vfxDuration = vfxs.TackleVFX();
+                gameManager.tackleturn();
                 break;
             case "vine whip":
                 descriptionText.text = "Ivysaur used Vine Whip!";
-                vfxs.VineWhipVFX();
+                vfxDuration = vfxs.VineWhipVFX();
+                gameManager.vinewhipturn();
                 break;
             case "poison powder":
                 descriptionText.text = "Ivysaur used Poison Powder!";
-                vfxs.PoisonPowderVFX();
+                vfxDuration = vfxs.PoisonPowderVFX();
+                gameManager.poisonpowderturn();
                 break;
             case "razer leaf":
                 descriptionText.text = "Ivysaur used Razer Leaf!";
-                vfxs.RazerLeafVFX();
+                vfxDuration = vfxs.RazerLeafVFX();
+                gameManager.razerleafturn();
+                break;
+            case "air slash":
+                descriptionText.text = "Zubat used Air Slash!";
+                vfxDuration = vfxs.AirSlashVFX();
+                //gameManager.AirSlashTurn();
+                break;
+            case "air cutter":
+                descriptionText.text = "Zubat used Air Cutter!";
+                vfxDuration = vfxs.AirCutterVFX();
+                //gameManager.AirCutterTurn();
+                break;
+            case "venoshock":
+                descriptionText.text = "Zubat used Venoshock!";
+                vfxDuration = vfxs.VenoshockVFX();
+                //gameManager.VenoshockTurn();
                 break;
             default:
                 print("No attack");
                 break;
         }
         MoveToText();
+        StartCoroutine(VFXWait());
+    }
+
+    IEnumerator VFXWait()
+    {
+        yield return new WaitForSeconds(vfxDuration);
+        ContinueImage.SetActive(true);
+        canContinue = true;
     }
 
     public void SetHPBarIvy(float value)
