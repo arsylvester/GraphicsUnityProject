@@ -5751,6 +5751,13 @@ MonoBehaviour:
   playerturn: 1
   poisiondamage: 0
   counter: 0
+  airSlashDamage: 20
+  airCutterDamage: 25
+  venoshockDamage: 15
+  tackleDamage: 20
+  vineWhipDamage: 25
+  razerLeafDamage: 25
+  poisonPowderDamage: 10
 --- !u!114 &1770416865 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2072460737167185025, guid: 03578e704f2f538499005019a08f30c9, type: 3}
@@ -10961,6 +10968,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633095597820871046, guid: 03dc6366252ff2542a6729fecb25e9d1, type: 3}
+      propertyPath: winMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 06ec4be715aafc2499a190ddb0a45c02, type: 3}
+    - target: {fileID: 4633095597820871046, guid: 03dc6366252ff2542a6729fecb25e9d1, type: 3}
       propertyPath: soundEffectVolume
       value: 16
       objectReference: {fileID: 0}
@@ -10975,7 +10986,7 @@ PrefabInstance:
     - target: {fileID: 4633095597820871047, guid: 03dc6366252ff2542a6729fecb25e9d1, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 3adf30c3343d2404d95703ef174c6f82, type: 3}
+      objectReference: {fileID: 8300000, guid: e92e631482cf4b24d8c440ce531dfbbb, type: 3}
     - target: {fileID: 4633095597820871047, guid: 03dc6366252ff2542a6729fecb25e9d1, type: 3}
       propertyPath: m_PlayOnAwake
       value: 1

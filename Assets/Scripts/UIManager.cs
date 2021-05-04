@@ -29,6 +29,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] PlayAttackEffects vfxs;
     [SerializeField] GameObject ContinueImage;
     [SerializeField] AudioClip selectClip;
+    [SerializeField] int tacklePP = 35;
+    [SerializeField] int vinewhipPP = 25;
+    [SerializeField] int poisonPowderPP = 35;
+    [SerializeField] int razerleafPP = 25;
     float vfxDuration;
     bool canContinue;
     GameManager1 gameManager;
@@ -99,19 +103,19 @@ public class UIManager : MonoBehaviour
         switch(move)
         {
             case "tackle":
-                ppText.text = "PP 35/35";
+                ppText.text = "PP " + tacklePP + "/35";
                 typeText.text = "Normal";
                 break;
             case "vine whip":
-                ppText.text = "PP 25/25";
+                ppText.text = "PP " + vinewhipPP + "/25";
                 typeText.text = "Grass";
                 break;
             case "poison powder":
-                ppText.text = "PP 35/35";
+                ppText.text = "PP " + poisonPowderPP + "/35";
                 typeText.text = "Poison";
                 break;
             case "razer leaf":
-                ppText.text = "PP 25/25";
+                ppText.text = "PP " + razerleafPP + "/25";
                 typeText.text = "Grass";
                 break;
             default:
@@ -128,21 +132,25 @@ public class UIManager : MonoBehaviour
                 descriptionText.text = "Ivysaur used Tackle!";
                 vfxDuration = vfxs.TackleVFX();
                 gameManager.tackleturn();
+                tacklePP--;
                 break;
             case "vine whip":
                 descriptionText.text = "Ivysaur used Vine Whip!";
                 vfxDuration = vfxs.VineWhipVFX();
                 gameManager.vinewhipturn();
+                vinewhipPP--;
                 break;
             case "poison powder":
                 descriptionText.text = "Ivysaur used Poison Powder!";
                 vfxDuration = vfxs.PoisonPowderVFX();
                 gameManager.poisonpowderturn();
+                poisonPowderPP--;
                 break;
             case "razer leaf":
                 descriptionText.text = "Ivysaur used Razer Leaf!";
                 vfxDuration = vfxs.RazerLeafVFX();
                 gameManager.razerleafturn();
+                razerleafPP--;
                 break;
             case "air slash":
                 descriptionText.text = "Zubat used Air Slash!";
