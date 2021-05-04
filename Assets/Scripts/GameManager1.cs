@@ -16,6 +16,14 @@ public class GameManager1 : MonoBehaviour
     public bool playerturn = true;
     public int poisiondamage;
     public int counter = 0;
+    //Attack Damages
+    [SerializeField] int airSlashDamage = 20;
+    [SerializeField] int airCutterDamage = 25;
+    [SerializeField] int venoshockDamage = 15;
+    [SerializeField] int tackleDamage = 20;
+    [SerializeField] int vineWhipDamage = 25;
+    [SerializeField] int razerLeafDamage = 25;
+    [SerializeField] int poisonPowderDamage = 10;
     UIManager ui;
     
     // Start is called before the first frame update
@@ -42,13 +50,24 @@ public class GameManager1 : MonoBehaviour
 
     public void NextTurn()
     {
-        if(playerturn)
+        if(currHealth < 1)
         {
-            ui.MoveToOptions();
+            ui.DisplayLoss();
+        }
+        else if(enemyhealth < 1)
+        {
+            ui.DisplayWin();
         }
         else
         {
-            ZubatTurn();
+            if (playerturn)
+            {
+                ui.MoveToOptions();
+            }
+            else
+            {
+                ZubatTurn();
+            }
         }
     }
 
@@ -90,7 +109,7 @@ public class GameManager1 : MonoBehaviour
     //Zubat
     public void AirSlashTurn()
     {
-        currHealth = tackelattack(currHealth);
+        currHealth = dealDamage(currHealth, airSlashDamage);
         ui.SetHPBarIvy(currHealth);
         ui.UseMove("air slash");
         Debug.Log("this is current health after tackle" + currHealth);
@@ -103,7 +122,7 @@ public class GameManager1 : MonoBehaviour
     }
     public void AirCutterTurn()
     {
-        currHealth = tackelattack(currHealth);
+        currHealth = dealDamage(currHealth, airCutterDamage);
         ui.SetHPBarIvy(currHealth);
         ui.UseMove("air cutter");
         Debug.Log("this is current health after tackle" + currHealth);
@@ -116,7 +135,7 @@ public class GameManager1 : MonoBehaviour
     }
     public void VenoshockTurn()
     {
-        currHealth = tackelattack(currHealth);
+        currHealth = dealDamage(currHealth, venoshockDamage);
         ui.SetHPBarIvy(currHealth);
         ui.UseMove("venoshock");
         Debug.Log("this is current health after tackle" + currHealth);
@@ -256,11 +275,11 @@ public class GameManager1 : MonoBehaviour
     // Attacks of the  user      
     public int tackelattack(int hp)
     {
-        damage = 35;  
+        damage = tackleDamage;  
         if(hp - damage  <= 0)
         {
             Debug.Log("You Died in tackle attack");
-            return -1;
+            return 0;
         }
         hp = hp - damage;  
 
@@ -268,11 +287,11 @@ public class GameManager1 : MonoBehaviour
     }
 
       public int vinewhip(int hp){
-        damage = 25;  
+        damage = vineWhipDamage;  
         if(hp - damage  <= 0)
         {
             Debug.Log("You Died in vine whip");
-            return -1;
+            return 0;
         }
     
         hp = hp - damage;
@@ -282,7 +301,7 @@ public class GameManager1 : MonoBehaviour
 
 
     public int poisonpowder(int hp){
-        damage = 35;
+        damage = poisonPowderDamage;
         if(hp - damage  <= 0)
         {
             Debug.Log("You Died in poision powder");
@@ -303,6 +322,27 @@ public class GameManager1 : MonoBehaviour
         hp = hp - damage;
     
         return hp;
+    }
+
+    private int dealDamage(int hp, int damageDealt)
+    {
+        if (hp - damageDealt <= 0)
+        {
+            return 0;
+        }
+        hp = hp - damageDealt;
+
+        return hp;
+    }
+
+    public void WonGame()
+    {
+
+    }
+
+    public void LoseGame()
+    {
+
     }
 
 

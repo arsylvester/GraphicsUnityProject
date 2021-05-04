@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,27 +11,34 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject optionsButtonsPanel;
     [SerializeField] GameObject optionsTextPanel;
     [SerializeField] GameObject descriptionTextPanel;
+    [SerializeField] GameObject EndPanel;
+    [SerializeField] Text endText;
     [SerializeField] Text ppText;
     [SerializeField] Text typeText;
     [SerializeField] Text descriptionText;
     [SerializeField] Slider IvyHPBar;
     [SerializeField] Image IvyHPFill;
+    [SerializeField] Text IvyHpText;
     [SerializeField] Slider ZubatHPBar;
     [SerializeField] Image ZubatHPFill;
+    [SerializeField] Text ZubatHpText;
     Color HighHPColor;
     [SerializeField] Color MediumHPColor;
     [SerializeField] Color LowHPColor;
     [SerializeField] float loseHPSpeed = 1;
     [SerializeField] PlayAttackEffects vfxs;
     [SerializeField] GameObject ContinueImage;
+    [SerializeField] AudioClip selectClip;
     float vfxDuration;
     bool canContinue;
     GameManager1 gameManager;
+    AudioPlayer audio;
 
     // Start is called before the first frame update
     void Start()
     {
         HighHPColor = IvyHPFill.color;
+        audio = FindObjectOfType<AudioPlayer>();
         gameManager = FindObjectOfType<GameManager1>();
     }
 
@@ -41,6 +49,7 @@ public class UIManager : MonoBehaviour
         {
             canContinue = false;
             gameManager.NextTurn();
+            audio.PlaySound(selectClip);
         }
     }
 
@@ -180,6 +189,7 @@ public class UIManager : MonoBehaviour
         {
             IvyHPFill.color = HighHPColor;
         }
+        IvyHpText.text = value + "/100";
     }
 
     public void SetHPBarZubat(float value)
@@ -197,6 +207,7 @@ public class UIManager : MonoBehaviour
         {
             ZubatHPFill.color = HighHPColor;
         }
+        ZubatHpText.text = value + "/100";
     }
 
     IEnumerator ReduceHPBar(Slider bar, float newValue)
@@ -209,5 +220,24 @@ public class UIManager : MonoBehaviour
             scaledSpeed += loseHPSpeed * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void DisplayWin()
+    {
+        MoveToClear();
+        endText.text = "Zubat was defeated. You win!";
+        EndPanel.SetActive(true);
+    }
+
+    public void DisplayLoss()
+    {
+        MoveToClear();
+        endText.text = "Your Ivysaur was defeated. You Lose!";
+        EndPanel.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 }
