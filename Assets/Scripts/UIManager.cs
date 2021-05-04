@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,27 +11,38 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject optionsButtonsPanel;
     [SerializeField] GameObject optionsTextPanel;
     [SerializeField] GameObject descriptionTextPanel;
+    [SerializeField] GameObject EndPanel;
+    [SerializeField] Text endText;
     [SerializeField] Text ppText;
     [SerializeField] Text typeText;
     [SerializeField] Text descriptionText;
     [SerializeField] Slider IvyHPBar;
     [SerializeField] Image IvyHPFill;
+    [SerializeField] Text IvyHpText;
     [SerializeField] Slider ZubatHPBar;
     [SerializeField] Image ZubatHPFill;
+    [SerializeField] Text ZubatHpText;
     Color HighHPColor;
     [SerializeField] Color MediumHPColor;
     [SerializeField] Color LowHPColor;
     [SerializeField] float loseHPSpeed = 1;
     [SerializeField] PlayAttackEffects vfxs;
     [SerializeField] GameObject ContinueImage;
+    [SerializeField] AudioClip selectClip;
+    [SerializeField] int tacklePP = 35;
+    [SerializeField] int vinewhipPP = 25;
+    [SerializeField] int poisonPowderPP = 35;
+    [SerializeField] int razerleafPP = 25;
     float vfxDuration;
     bool canContinue;
     GameManager1 gameManager;
+    AudioPlayer audio;
 
     // Start is called before the first frame update
     void Start()
     {
         HighHPColor = IvyHPFill.color;
+        audio = FindObjectOfType<AudioPlayer>();
         gameManager = FindObjectOfType<GameManager1>();
     }
 
@@ -41,6 +53,7 @@ public class UIManager : MonoBehaviour
         {
             canContinue = false;
             gameManager.NextTurn();
+            audio.PlaySound(selectClip);
         }
     }
 
@@ -90,19 +103,19 @@ public class UIManager : MonoBehaviour
         switch(move)
         {
             case "tackle":
-                ppText.text = "PP 35/35";
+                ppText.text = "PP " + tacklePP + "/35";
                 typeText.text = "Normal";
                 break;
             case "vine whip":
-                ppText.text = "PP 25/25";
+                ppText.text = "PP " + vinewhipPP + "/25";
                 typeText.text = "Grass";
                 break;
             case "poison powder":
-                ppText.text = "PP 35/35";
+                ppText.text = "PP " + poisonPowderPP + "/35";
                 typeText.text = "Poison";
                 break;
             case "razer leaf":
-                ppText.text = "PP 25/25";
+                ppText.text = "PP " + razerleafPP + "/25";
                 typeText.text = "Grass";
                 break;
             default:
@@ -119,21 +132,25 @@ public class UIManager : MonoBehaviour
                 descriptionText.text = "Ivysaur used Tackle!";
                 vfxDuration = vfxs.TackleVFX();
                 gameManager.tackleturn();
+                tacklePP--;
                 break;
             case "vine whip":
                 descriptionText.text = "Ivysaur used Vine Whip!";
                 vfxDuration = vfxs.VineWhipVFX();
                 gameManager.vinewhipturn();
+                vinewhipPP--;
                 break;
             case "poison powder":
                 descriptionText.text = "Ivysaur used Poison Powder!";
                 vfxDuration = vfxs.PoisonPowderVFX();
                 gameManager.poisonpowderturn();
+                poisonPowderPP--;
                 break;
             case "razer leaf":
                 descriptionText.text = "Ivysaur used Razer Leaf!";
                 vfxDuration = vfxs.RazerLeafVFX();
                 gameManager.razerleafturn();
+                razerleafPP--;
                 break;
             case "air slash":
                 descriptionText.text = "Zubat used Air Slash!";
@@ -180,6 +197,7 @@ public class UIManager : MonoBehaviour
         {
             IvyHPFill.color = HighHPColor;
         }
+        IvyHpText.text = value + "/100";
     }
 
     public void SetHPBarZubat(float value)
@@ -197,6 +215,7 @@ public class UIManager : MonoBehaviour
         {
             ZubatHPFill.color = HighHPColor;
         }
+        ZubatHpText.text = value + "/100";
     }
 
     IEnumerator ReduceHPBar(Slider bar, float newValue)
@@ -209,5 +228,25 @@ public class UIManager : MonoBehaviour
             scaledSpeed += loseHPSpeed * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void DisplayWin()
+    {
+        MoveToClear();
+        endText.text = "Zubat was defeated. You win!";
+        EndPanel.SetActive(true);
+        audio.ChangeToWinMusic();
+    }
+
+    public void DisplayLoss()
+    {
+        MoveToClear();
+        endText.text = "Your Ivysaur was defeated. You Lose!";
+        EndPanel.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 }

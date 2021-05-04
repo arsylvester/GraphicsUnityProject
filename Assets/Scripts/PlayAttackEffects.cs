@@ -99,6 +99,12 @@ public class PlayAttackEffects : MonoBehaviour
     {
         VenoshockPS.Play();
         audio.PlaySound(VenoshockClip);
+        Renderer[] rends = mainPokemon.GetComponentsInChildren<Renderer>();
+        foreach (Renderer rend in rends)
+        {
+            rend.material = enemyPoisonMaterial;
+        }
+        PoisonBubblesPS.Play();
         return VenoshockPS.main.duration;
     }
 
