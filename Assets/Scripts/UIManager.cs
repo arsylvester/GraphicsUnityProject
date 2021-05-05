@@ -167,6 +167,16 @@ public class UIManager : MonoBehaviour
                 vfxDuration = vfxs.VenoshockVFX();
                 //gameManager.VenoshockTurn();
                 break;
+            case "poisonedIvy":
+                descriptionText.text = "Ivysuar was hurt by the poison!";
+                vfxDuration = 1;
+                //gameManager.VenoshockTurn();
+                break;
+            case "poisonedZubat":
+                descriptionText.text = "Zubat was hurt by the poison!";
+                vfxDuration = 1;
+                //gameManager.VenoshockTurn();
+                break;
             default:
                 print("No attack");
                 break;

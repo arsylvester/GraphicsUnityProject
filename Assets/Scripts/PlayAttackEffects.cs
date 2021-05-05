@@ -20,6 +20,7 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] float AirSlashDistance = 1;
     [SerializeField] float AirSlashSpeed = 1;
     [SerializeField] Material enemyPoisonMaterial;
+    [SerializeField] Material playerPoisonMaterial;
     [SerializeField] AudioClip PoisonPowderClip;
     [SerializeField] AudioClip TackleClip;
     [SerializeField] AudioClip AirSlashClip;
@@ -28,6 +29,8 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] AudioClip AirCutterClip;
     [SerializeField] AudioClip VenoshockClip;
     AudioPlayer audio;
+    Material enemyMaterial;
+    Material playerMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,8 @@ public class PlayAttackEffects : MonoBehaviour
         tackleDistance += mainPokemon.transform.localPosition.z;
         AirSlashDistance += enemyPokemon.transform.localPosition.x;
         audio = FindObjectOfType<AudioPlayer>();
+        enemyMaterial = enemyPokemon.GetComponentInChildren<Renderer>().material;
+        playerMaterial = mainPokemon.GetComponentInChildren<Renderer>().material;
     }
 
     // Update is called once per frame
@@ -102,7 +107,7 @@ public class PlayAttackEffects : MonoBehaviour
         Renderer[] rends = mainPokemon.GetComponentsInChildren<Renderer>();
         foreach (Renderer rend in rends)
         {
-            rend.material = enemyPoisonMaterial;
+            rend.material = playerPoisonMaterial;
         }
         PoisonBubblesPS.Play();
         return VenoshockPS.main.duration;
@@ -118,6 +123,26 @@ public class PlayAttackEffects : MonoBehaviour
     {
         StartCoroutine(AirSlashCourtine());
         return AirSlash.main.duration;
+    }
+
+    public void DisablePoisonIvy()
+    {
+        Renderer[] rends = mainPokemon.GetComponentsInChildren<Renderer>();
+        foreach (Renderer rend in rends)
+        {
+            rend.material = playerMaterial;
+        }
+        PoisonBubblesPS.Stop();
+    }
+
+    public void DisablePoisonZubat()
+    {
+        Renderer[] rends = enemyPokemon.GetComponentsInChildren<Renderer>();
+        foreach (Renderer rend in rends)
+        {
+            rend.material = enemyMaterial;
+        }
+        PoisonBubblesPS.Stop();
     }
 
     IEnumerator AirSlashCourtine()
