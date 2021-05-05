@@ -57,10 +57,12 @@ public class GameManager1 : MonoBehaviour
         if(currHealth < 1)
         {
             ui.DisplayLoss();
+            effects.IvyDrop();
         }
         else if(enemyhealth < 1)
         {
             ui.DisplayWin();
+            effects.ZubatDrop();
         }
         else
         {
