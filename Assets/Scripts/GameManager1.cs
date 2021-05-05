@@ -14,8 +14,9 @@ public class GameManager1 : MonoBehaviour
     public int currHealth = 100;
     public int damage = 0;
     public bool playerturn = true;
-    public int poisiondamage;
-    public int counter = 0;
+    public int poisondamage = 5;
+    public int playerPoisonCounter = 0;
+    public int enemyPoisonCounter = 0;
     //Attack Damages
     [SerializeField] int airSlashDamage = 20;
     [SerializeField] int airCutterDamage = 25;
@@ -25,6 +26,8 @@ public class GameManager1 : MonoBehaviour
     [SerializeField] int razerLeafDamage = 25;
     [SerializeField] int poisonPowderDamage = 10;
     UIManager ui;
+    PlayAttackEffects effects;
+    bool poisonThisTurn = false;
     
     // Start is called before the first frame update
     void Start()
@@ -40,6 +43,7 @@ public class GameManager1 : MonoBehaviour
         Debug.Log("hello this is enenmy" + enemyhealth);
         */
         ui = FindObjectOfType<UIManager>();
+        effects = FindObjectOfType<PlayAttackEffects>();
     }
 
     // Update is called once per frame
@@ -62,11 +66,42 @@ public class GameManager1 : MonoBehaviour
         {
             if (playerturn)
             {
-                ui.MoveToOptions();
+                if (!poisonThisTurn && enemyPoisonCounter > 0)
+                {
+                    enemyhealth = dealDamage(enemyhealth, poisondamage);
+                    ui.SetHPBarZubat(enemyhealth);
+                    ui.UseMove("poisonedZubat");
+                    poisonThisTurn = true;
+                    if (--enemyPoisonCounter <= 0)
+                    {
+                        effects.DisablePoisonZubat();
+                    }
+                }
+                else
+                {
+                    poisonThisTurn = false;
+                    ui.MoveToOptions();
+                }
             }
             else
             {
-                ZubatTurn();
+
+                if (!poisonThisTurn && playerPoisonCounter > 0)
+                {
+                    currHealth = dealDamage(currHealth, poisondamage);
+                    ui.SetHPBarIvy(currHealth);
+                    ui.UseMove("poisonedIvy");
+                    poisonThisTurn = true;
+                    if(--playerPoisonCounter <= 0)
+                    {
+                        effects.DisablePoisonIvy();
+                    }
+                }
+                else
+                {
+                    poisonThisTurn = false;
+                    ZubatTurn();
+                }
             }
         }
     }
@@ -92,20 +127,6 @@ public class GameManager1 : MonoBehaviour
         }
     }
 
-    public void buttonchanger(string moves)
-    {
-        // if(moves == "tackle")
-        // {
-        //                 tackleturn();
-        // }
-
-        // if(moves == "vine whip")
-        // {
-                    
-        //         vinewhipturn();
-        // }
-    }
-
     //Zubat
     public void AirSlashTurn()
     {
@@ -114,11 +135,6 @@ public class GameManager1 : MonoBehaviour
         ui.UseMove("air slash");
         Debug.Log("this is current health after tackle" + currHealth);
         playerturn = true;
-        if (counter > 0)
-        {
-            enemyhealth = enemyhealth - 5;
-            counter--;
-        }
     }
     public void AirCutterTurn()
     {
@@ -127,11 +143,6 @@ public class GameManager1 : MonoBehaviour
         ui.UseMove("air cutter");
         Debug.Log("this is current health after tackle" + currHealth);
         playerturn = true;
-        if (counter > 0)
-        {
-            enemyhealth = enemyhealth - 5;
-            counter--;
-        }
     }
     public void VenoshockTurn()
     {
@@ -140,11 +151,8 @@ public class GameManager1 : MonoBehaviour
         ui.UseMove("venoshock");
         Debug.Log("this is current health after tackle" + currHealth);
         playerturn = true;
-        if (counter > 0)
-        {
-            enemyhealth = enemyhealth - 5;
-            counter--;
-        }
+        poisonThisTurn = false;
+        playerPoisonCounter = 3;
     }
 
     //Ivysaur
@@ -157,24 +165,6 @@ public class GameManager1 : MonoBehaviour
             Debug.Log("this is enemy health after tackle" + enemyhealth);
             playerturn = false;
 
-            if(counter > 0)
-            {
-                currHealth = currHealth - 5;
-                counter--;
-            }
-        }
-
-        else if (playerturn == false) {
-
-            currHealth = tackelattack(currHealth);
-            Debug.Log("this is current health after tackle" + currHealth);
-            playerturn = true;
-
-            if(counter > 0)
-            {
-                enemyhealth = enemyhealth - 5;
-                counter--;
-            }
         }
     }
 
@@ -186,25 +176,6 @@ public class GameManager1 : MonoBehaviour
             ui.SetHPBarZubat(enemyhealth);
             Debug.Log("this is enemy health after vine whip" + enemyhealth);
             playerturn = false;
-
-            if(counter > 0)
-            {
-                currHealth = currHealth - 5;
-                counter--;
-            }
-        }
-
-        else if (playerturn == false) {
-
-            currHealth = vinewhip(currHealth);
-            Debug.Log("this is current health after vine whip" + currHealth);
-            playerturn = true;
-
-             if(counter > 0)
-            {
-                enemyhealth = enemyhealth - 5;
-                counter--;
-            }
         }
     }
 
@@ -212,30 +183,12 @@ public class GameManager1 : MonoBehaviour
     {
         if(playerturn == true)
         {
-            counter = counter+3;
+            enemyPoisonCounter = 3;
             enemyhealth = poisonpowder(enemyhealth);
             ui.SetHPBarZubat(enemyhealth);
             Debug.Log("this is enemy health after poision powder" + enemyhealth);
             playerturn = false;
-
-            if(counter > 0)
-            {
-                currHealth = currHealth - 5;
-                counter--;
-            }
-        }
-
-        else if (playerturn == false) {
-            counter = counter+3;
-            currHealth = poisonpowder(currHealth);
-            Debug.Log("this is current health after poision powder" + currHealth);
-            playerturn = true;
-
-            if(counter > 0)
-            {
-                enemyhealth = enemyhealth - 5;
-                counter--;
-            }
+            poisonThisTurn = false;
         }
     }
 
@@ -248,28 +201,8 @@ public class GameManager1 : MonoBehaviour
             ui.SetHPBarZubat(enemyhealth);
             Debug.Log("this is enemy health after razer leaf" + enemyhealth);
             playerturn = false;
-
-            if(counter > 0)
-            {
-                currHealth = currHealth - 5;
-                counter--;
-            }
-        }
-
-        else if (playerturn == false) {
-
-            currHealth = razerleaf(currHealth);
-            Debug.Log("this is current health after razer leaf" + currHealth);
-            playerturn = true;
-
-            if(counter > 0)
-            {
-                enemyhealth = enemyhealth - 5;
-                counter--;
-            }
         }
     }
-
 
 
     // Attacks of the  user      
