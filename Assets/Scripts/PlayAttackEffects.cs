@@ -1,3 +1,6 @@
+// PlayAttackEffects.cs - This script manages all of the VFXs in the game. When an attack occurs this scripted is called on to play the right effect at the right time.
+// Created by Andrew Sylvester
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,34 +48,10 @@ public class PlayAttackEffects : MonoBehaviour
         playerMaterial = mainPokemon.GetComponentInChildren<Renderer>().material;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            TackleVFX();
-        }
-        else if(Input.GetKeyDown(KeyCode.S))
-        {
-            AirSlashVFX();
-        }
-        else if(Input.GetKeyDown(KeyCode.P))
-        {
-            PoisonPowderVFX();
-        }
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            AirCutterVFX();
-        }
-        else if (Input.GetKeyDown(KeyCode.V))
-        {
-            VenoshockVFX();
-        }
-    }
-
     public float PoisonPowderVFX()
     {
         PoisonPowderPS.Play();
+        //Swap to poison material
         Renderer[] rends = enemyPokemon.GetComponentsInChildren<Renderer>();
         foreach( Renderer rend in rends)
         {
@@ -111,6 +90,7 @@ public class PlayAttackEffects : MonoBehaviour
         VenoshockPS.Play();
         audio.PlaySound(VenoshockClip);
         Renderer[] rends = mainPokemon.GetComponentsInChildren<Renderer>();
+        //Swap to poison material
         foreach (Renderer rend in rends)
         {
             rend.material = playerPoisonMaterial;
@@ -134,6 +114,7 @@ public class PlayAttackEffects : MonoBehaviour
         return AirSlash.main.duration;
     }
 
+    //Swap back to regular material
     public void DisablePoisonIvy()
     {
         Renderer[] rends = mainPokemon.GetComponentsInChildren<Renderer>();
@@ -144,6 +125,7 @@ public class PlayAttackEffects : MonoBehaviour
         PoisonBubblesPS.Stop();
     }
 
+    //Swap back to regular material
     public void DisablePoisonZubat()
     {
         Renderer[] rends = enemyPokemon.GetComponentsInChildren<Renderer>();
@@ -154,6 +136,7 @@ public class PlayAttackEffects : MonoBehaviour
         PoisonBubblesPS.Stop();
     }
 
+    //When dead drop through ground
     public void ZubatDrop()
     {
         StartCoroutine(DropPokemon(enemyPokemon.transform));
@@ -164,6 +147,7 @@ public class PlayAttackEffects : MonoBehaviour
         StartCoroutine(DropPokemon(mainPokemon.transform));
     }
 
+    //Courtine to show Zubat moving forward then back quickly
     IEnumerator AirSlashCourtine()
     {
         float startPosition = enemyPokemon.transform.localPosition.x;
@@ -188,6 +172,7 @@ public class PlayAttackEffects : MonoBehaviour
         }
     }
 
+    //Courtine to show Ivysaur moving forward then back quickly
     IEnumerator TackleCourtine()
     {
         float startPosition = mainPokemon.transform.localPosition.z;
@@ -225,17 +210,9 @@ public class PlayAttackEffects : MonoBehaviour
         }
         PoisonBubblesPS.Stop();
         PoisonBubblesIvyPS.Stop();
-        /*
-        while (startPosition != mainPokemon.transform.localPosition.y)
-        {
-            mainPokemon.transform.localPosition = new Vector3(mainPokemon.transform.localPosition.x, mainPokemon.transform.localPosition.y, Mathf.LerpAngle(startPosition, tackleDistance, scaledSpeed));
-            scaledSpeed -= tackleSpeed * Time.deltaTime;
-            //print(scaledSpeed);
-            yield return new WaitForEndOfFrame();
-        }
-        */
     }
 
+    //Flickers the pokemon to show that the pokemon was damaged
     IEnumerator FlickerPokemon(GameObject pokemon, int duration)
     {
         Renderer[] rends = pokemon.GetComponentsInChildren<Renderer>();

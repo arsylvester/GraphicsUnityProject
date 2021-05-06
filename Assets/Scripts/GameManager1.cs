@@ -1,5 +1,5 @@
 // GameManger.cs - This keeps track of all of the numbers and the overall flow of the game.
-//Created by Yash
+// Created by Yash Bhalavat and edited by Andrew Sylvester
 
 using System.Collections;
 using System.Collections.Generic;
@@ -32,28 +32,13 @@ public class GameManager1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        poisonpowderturn();
-        Debug.Log("coubnter is : " + counter);
-        tackleturn();
-        vinewhipturn();
-        razerleafturn();
-
-        Debug.Log("hello this is current" + currHealth);
-        Debug.Log("hello this is enenmy" + enemyhealth);
-        */
         ui = FindObjectOfType<UIManager>();
         effects = FindObjectOfType<PlayAttackEffects>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void NextTurn()
     {
+        //Check if won or loss
         if(currHealth < 1)
         {
             ui.DisplayLoss();
@@ -68,6 +53,7 @@ public class GameManager1 : MonoBehaviour
         {
             if (playerturn)
             {
+                //If zubat is poisoned deal damage at the start of player turn
                 if (!poisonThisTurn && enemyPoisonCounter > 0)
                 {
                     enemyhealth = dealDamage(enemyhealth, poisondamage);
@@ -87,7 +73,7 @@ public class GameManager1 : MonoBehaviour
             }
             else
             {
-
+                //If Ivysaur is poisoned deal damage at the start of enemy turn
                 if (!poisonThisTurn && playerPoisonCounter > 0)
                 {
                     currHealth = dealDamage(currHealth, poisondamage);

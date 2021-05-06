@@ -1,3 +1,6 @@
+//AudioPlayer.cs - This script runs manages all of the sounds and music in the game.
+// Created by Andrew Sylvester
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +15,6 @@ public class AudioPlayer : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void PlaySound(AudioClip clip)

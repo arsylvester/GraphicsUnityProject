@@ -1,3 +1,7 @@
+// UIManager.cs - this script manages all UI processes in the game. Anytime the UI states needs to change this script handles it. All UI buttons interface with this script
+// which in turn interfaces with the other scripts to run the game. 
+// Created by Andrew Sylvester
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -185,6 +189,7 @@ public class UIManager : MonoBehaviour
         StartCoroutine(VFXWait());
     }
 
+    //Wait for VFX to finish before displaying continue
     IEnumerator VFXWait()
     {
         yield return new WaitForSeconds(vfxDuration);
@@ -228,6 +233,7 @@ public class UIManager : MonoBehaviour
         ZubatHpText.text = value + "/100";
     }
 
+    //Display the hp going down through this coroutine
     IEnumerator ReduceHPBar(Slider bar, float newValue)
     {
         float currentValue = bar.value;
