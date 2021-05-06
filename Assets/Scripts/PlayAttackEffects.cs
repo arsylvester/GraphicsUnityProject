@@ -87,12 +87,14 @@ public class PlayAttackEffects : MonoBehaviour
     {
         RazerLeafPS.Play();
         audio.PlaySound(RazerLeafClip);
+        StartCoroutine(FlickerPokemon(enemyPokemon, 8));
         return RazerLeafPS.main.duration;
     }
     public float AirCutterVFX()
     {
         AirCutterPS.Play();
         audio.PlaySound(AirCutterClip);
+        StartCoroutine(FlickerPokemon(mainPokemon, 6));
         return AirCutterPS.main.duration;
     }
 
@@ -100,6 +102,7 @@ public class PlayAttackEffects : MonoBehaviour
     {
         VineWhipPS.Play();
         audio.PlaySound(VineWhipClip);
+        StartCoroutine(FlickerPokemon(enemyPokemon, 5));
         return VineWhipPS.main.duration;
     }
 
@@ -112,6 +115,7 @@ public class PlayAttackEffects : MonoBehaviour
         {
             rend.material = playerPoisonMaterial;
         }
+        StartCoroutine(FlickerPokemon(mainPokemon, 8));
         PoisonBubblesIvyPS.Play();
         return VenoshockPS.main.duration;
     }
@@ -119,12 +123,14 @@ public class PlayAttackEffects : MonoBehaviour
     public float TackleVFX()
     {
         StartCoroutine(TackleCourtine());
+        StartCoroutine(FlickerPokemon(enemyPokemon, 5));
         return TackleHitVFX.main.duration;
     }
 
     public float AirSlashVFX()
     {
         StartCoroutine(AirSlashCourtine());
+        StartCoroutine(FlickerPokemon(mainPokemon, 5));
         return AirSlash.main.duration;
     }
 
@@ -228,6 +234,24 @@ public class PlayAttackEffects : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         */
+    }
+
+    IEnumerator FlickerPokemon(GameObject pokemon, int duration)
+    {
+        Renderer[] rends = pokemon.GetComponentsInChildren<Renderer>();
+        for (int x = 0; x < duration; x++)
+        {
+            foreach (Renderer rend in rends)
+            {
+                rend.enabled = false;
+            }
+            yield return new WaitForSeconds(.1f);
+            foreach (Renderer rend in rends)
+            {
+                rend.enabled = true;
+            }
+            yield return new WaitForSeconds(.1f);
+        }
     }
 
 }
