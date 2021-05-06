@@ -11,6 +11,7 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] ParticleSystem AirSlashBurst;
     [SerializeField] ParticleSystem PoisonPowderPS;
     [SerializeField] ParticleSystem PoisonBubblesPS;
+    [SerializeField] ParticleSystem PoisonBubblesIvyPS;
     [SerializeField] ParticleSystem RazerLeafPS;
     [SerializeField] ParticleSystem VineWhipPS;
     [SerializeField] ParticleSystem AirCutterPS;
@@ -19,6 +20,8 @@ public class PlayAttackEffects : MonoBehaviour
     [SerializeField] float tackleSpeed = 1;
     [SerializeField] float AirSlashDistance = 1;
     [SerializeField] float AirSlashSpeed = 1;
+    [SerializeField] float DropDistance = 1;
+    [SerializeField] float DropSpeed = 1;
     [SerializeField] Material enemyPoisonMaterial;
     [SerializeField] Material playerPoisonMaterial;
     [SerializeField] AudioClip PoisonPowderClip;
@@ -109,7 +112,7 @@ public class PlayAttackEffects : MonoBehaviour
         {
             rend.material = playerPoisonMaterial;
         }
-        PoisonBubblesPS.Play();
+        PoisonBubblesIvyPS.Play();
         return VenoshockPS.main.duration;
     }
 
@@ -143,6 +146,16 @@ public class PlayAttackEffects : MonoBehaviour
             rend.material = enemyMaterial;
         }
         PoisonBubblesPS.Stop();
+    }
+
+    public void ZubatDrop()
+    {
+        StartCoroutine(DropPokemon(enemyPokemon.transform));
+    }
+
+    public void IvyDrop()
+    {
+        StartCoroutine(DropPokemon(mainPokemon.transform));
     }
 
     IEnumerator AirSlashCourtine()
@@ -191,4 +204,30 @@ public class PlayAttackEffects : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+
+    IEnumerator DropPokemon(Transform pokemon)
+    {
+        float startPosition = pokemon.localPosition.y;
+        float scaledSpeed = 0;
+
+        while (DropDistance != pokemon.localPosition.y)
+        {
+            pokemon.localPosition = new Vector3(pokemon.localPosition.x, Mathf.LerpAngle(startPosition, DropDistance, scaledSpeed), pokemon.localPosition.z);
+            scaledSpeed += DropSpeed * Time.deltaTime;
+            //print(scaledSpeed);
+            yield return new WaitForEndOfFrame();
+        }
+        PoisonBubblesPS.Stop();
+        PoisonBubblesIvyPS.Stop();
+        /*
+        while (startPosition != mainPokemon.transform.localPosition.y)
+        {
+            mainPokemon.transform.localPosition = new Vector3(mainPokemon.transform.localPosition.x, mainPokemon.transform.localPosition.y, Mathf.LerpAngle(startPosition, tackleDistance, scaledSpeed));
+            scaledSpeed -= tackleSpeed * Time.deltaTime;
+            //print(scaledSpeed);
+            yield return new WaitForEndOfFrame();
+        }
+        */
+    }
+
 }
